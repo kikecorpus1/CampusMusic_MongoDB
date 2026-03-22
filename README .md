@@ -69,16 +69,29 @@ La migración a MongoDB permite:
 
 ```
 📁 campus_music
-├── db_config.js             # Creación de colecciones con $jsonSchema e índices.
-├── test_dataset.js          # Poblamiento de la base con datos de prueba realistas.
-├── aggregations.js          # Consultas analíticas con el framework de agregación.
-├── rolAdministrador.js      # Rol, usuario y permisos del administrador.
-├── rolesEmpleadoSede.js     # Vistas, roles y usuarios de empleados por sede.
-├── rolEstudiante.js         # Vistas, roles y usuarios de estudiantes.
-├── transactions.js          # Transacción ACID de inscripción en curso.
-├── modeloConceptual.svg     # Diagrama del modelo conceptual.
-├── modeloLogico.svg         # Diagrama del modelo lógico NoSQL.
-└── README.md                # Documentación completa del proyecto.
+│
+├── 📁 config
+│   └── db_config.js            # Creación de colecciones con $jsonSchema e índices.
+│
+├── 📁 data
+│   └── test_dataset.js         # Poblamiento de la base con datos de prueba realistas.
+│
+├── 📁 queries
+│   └── aggregations.js         # Consultas analíticas con el framework de agregación.
+│
+├── 📁 roles
+│   ├── rolAdministrador.js     # Rol, usuario y permisos del administrador.
+│   ├── rolesEmpleadoSede.js    # Vistas, roles y usuarios de empleados por sede.
+│   └── rolEstudiante.js        # Vistas, roles y usuarios de estudiantes.
+│
+├── 📁 transactions
+│   └── transactions.js         # Transacción ACID de inscripción en curso.
+│
+├── 📁 docs
+│   ├── modeloConceptual.svg
+│   └── modeloLogico.svg
+│
+└── README.md
 ```
 
 ---
@@ -87,13 +100,13 @@ La migración a MongoDB permite:
 
 > ⚠️ Respetar este orden es obligatorio. Ejecutar scripts fuera de secuencia causará errores por dependencias inexistentes.
 
-1. `db_config.js` — Crea todas las colecciones e índices (**siempre primero**).
-2. `test_dataset.js` — Inserta los datos de prueba.
-3. `rolAdministrador.js` — Crea el rol y usuario administrador.
-4. `rolesEmpleadoSede.js` — Crea vistas, roles y usuarios de empleados de sede.
-5. `rolEstudiante.js` — Crea vistas, roles y usuarios de estudiantes.
-6. `transactions.js` — Ejecuta la transacción de prueba (requiere datos previos).
-7. `aggregations.js` — Ejecuta las consultas analíticas (requiere datos previos).
+1. `config/db_config.js` — Crea todas las colecciones e índices (**siempre primero**).
+2. `data/test_dataset.js` — Inserta los datos de prueba.
+3. `roles/rolAdministrador.js` — Crea el rol y usuario administrador.
+4. `roles/rolesEmpleadoSede.js` — Crea vistas, roles y usuarios de empleados de sede.
+5. `roles/rolEstudiante.js` — Crea vistas, roles y usuarios de estudiantes.
+6. `transactions/transactions.js` — Ejecuta la transacción de prueba (requiere datos previos).
+7. `queries/aggregations.js` — Ejecuta las consultas analíticas (requiere datos previos).
 
 ---
 
@@ -332,7 +345,7 @@ Acceso total a la base de datos `campusMusic`. Puede gestionar datos, coleccione
 | Usuarios y roles | `createUser`, `dropUser`, `grantRolesToUser`, `revokeRolesFromUser`, `createRole`, `dropRole` |
 | Roles heredados | `readWrite`, `dbAdmin` |
 
-**Usuario creado:** `administrador` — Ver código: [rolAdministrador.js](rolAdministrador.js)
+**Usuario creado:** `administrador` — Ver código: [rolAdministrador.js](roles/rolAdministrador.js)
 
 ---
 
@@ -350,7 +363,7 @@ Acceso restringido únicamente a los datos de su sede a través de vistas filtra
 | `Inscripcion` | `insert` |
 | `Reserva` | `insert` |
 
-**Usuarios creados:** `empleado_sede_1`, `empleado_sede_2`, `empleado_sede_3` — Ver código: [rolesEmpleadoSede.js](rolesEmpleadoSede.js)
+**Usuarios creados:** `empleado_sede_1`, `empleado_sede_2`, `empleado_sede_3` — Ver código: [rolesEmpleadoSede.js](roles/rolesEmpleadoSede.js)
 
 ---
 
@@ -366,7 +379,7 @@ Cada estudiante (del 1 al 15) tiene un rol personalizado que limita el acceso ex
 | `vista_estudiante_N_reservas` | `find` — historial de reservas |
 | `Reserva` | `insert` — crear nueva reserva |
 
-**Usuarios creados:** `estudiante1` hasta `estudiante15` — Ver código: [rolEstudiante.js](rolEstudiante.js)
+**Usuarios creados:** `estudiante1` hasta `estudiante15` — Ver código: [rolEstudiante.js](roles/rolEstudiante.js)
 
 ### Ejemplo de creación de usuario con rol asignado
 
