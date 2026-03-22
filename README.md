@@ -119,7 +119,7 @@ El modelo conceptual define las entidades del mundo real, sus atributos y las re
 - **Entidad:** objeto o concepto del mundo real distinguible por sus propiedades (representado como rectángulo).
 - **Relación:** asociación entre dos o más entidades (representada como rombo).
 
-![Modelo Conceptual](modeloConceptual.svg)
+![Modelo Conceptual](./models/modeloConceptual.svg)
 
 ---
 
@@ -130,7 +130,7 @@ El modelo lógico adapta el modelo conceptual al paradigma NoSQL de MongoDB, def
 - **Embebido:** datos que se consultan siempre juntos y no se reutilizan de forma independiente.
 - **Referencial:** datos que se comparten entre colecciones o que crecen de forma independiente.
 
-![Modelo Lógico](modeloLogico.svg)
+![Modelo Lógico](./models/modeloLogico.svg)
 
 ---
 
